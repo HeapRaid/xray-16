@@ -355,14 +355,9 @@ void _initialize_cpu()
     if (!query_processor_info(&CPU::ID))
         Log("! Can't detect CPU/FPU.");
 
-    Msg("* Detected CPU: %s [%s], F%d/M%d/S%d, 'rdtsc'", CPU::ID.modelName,
-        +CPU::ID.vendor, CPU::ID.family, CPU::ID.model, CPU::ID.stepping);
-
     string256 features;
     xr_strcpy(features, sizeof(features), "RDTSC");
 
-    if (CPU::ID.hasFeature(CpuFeature::InvariantTSC))
-        xr_strcat(features, ", Invariant TSC");
     if (CPU::ID.hasFeature(CpuFeature::MMX))
         xr_strcat(features, ", MMX");
     if (CPU::ID.hasFeature(CpuFeature::AltiVec))
@@ -375,10 +370,6 @@ void _initialize_cpu()
         xr_strcat(features, ", SSE2");
     if (CPU::ID.hasFeature(CpuFeature::SSE3))
         xr_strcat(features, ", SSE3");
-    if (CPU::ID.hasFeature(CpuFeature::MWait))
-        xr_strcat(features, ", MONITOR/MWAIT");
-    if (CPU::ID.hasFeature(CpuFeature::SSSE3))
-        xr_strcat(features, ", SSSE3");
     if (CPU::ID.hasFeature(CpuFeature::SSE41))
         xr_strcat(features, ", SSE4.1");
     if (CPU::ID.hasFeature(CpuFeature::SSE42))

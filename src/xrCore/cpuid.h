@@ -11,27 +11,19 @@ enum class CpuFeature : u32
     SSE             = 1u << 3u,
     SSE2            = 1u << 4u,
     SSE3            = 1u << 5u,
-    SSSE3           = 1u << 6u,
+//  SSSE3           = 1u << 6u,
     SSE41           = 1u << 7u,
     SSE42           = 1u << 8u,
 
     AVX             = 1u << 9u,
     AVX2            = 1u << 10u,
 
-    MWait           = 1u << 11u,
+//  MWait           = 1u << 11u,
     HyperThreading  = 1u << 12u,
-    InvariantTSC    = 1u << 13u,
 };
 
 struct processor_info
 {
-    string32 vendor; // vendor name
-    string64 modelName; // Name of model eg. Intel_Pentium_Pro
-
-    u8 family; // family of the processor, eg. Intel_Pentium_Pro is family 6 processor
-    u8 model; // model of processor, eg. Intel_Pentium_Pro is model 1 of family 6 processor
-    u8 stepping; // Processor revision number
-
     Flags32 features; // processor Feature (same as return value).
 
     u32 n_cores; // number of available physical cores
